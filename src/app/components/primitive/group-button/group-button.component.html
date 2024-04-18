@@ -1,0 +1,13 @@
+  <!-- group-button.component.html -->
+<div class="icon-container" [ngClass]="orientation === 'vertical' ? 'vertical' : 'horizontal'">
+    <div class="icon-wrapper">
+      <ng-container *ngFor="let icon of icons; let i = index">
+          <div class="icon" (click)="selectedIcon(i)">
+          <div class="selectedIcon"><i class="fas fa-{{ icon }}"></i></div>
+          <div class="selected-line" *ngIf="selectedIconIndex===null && i==0"></div>
+          <div class="selected-line" *ngIf="i === selectedIconIndex "></div>
+        </div>
+      </ng-container>
+    </div>
+</div>
+

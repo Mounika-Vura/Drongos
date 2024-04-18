@@ -1,0 +1,31 @@
+//@import 'variables';
+$pink: #E85B81;
+$font-stack: Roboto;
+$borderColor:#B5B5B5;
+$btnHoverColor:#C12F5D;
+$labelColor:#495057;
+
+label{
+    font-style: roboto;
+    font-size: 16px;
+    color: $labelColor;
+    padding: 0 0 13px 2px;
+    font-weight: thin;
+}
+
+input[type="radio"]:disabled {
+    color: #ccc;
+    cursor: not-allowed;
+  }
+
+input[type="radio"]:checked ::before{
+    font-weight: bold;
+    color: pink; 
+  }
+  
+// #female:checked + label::before {
+//     background-color: pink; 
+// }
+  
+
+
