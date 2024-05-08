@@ -7,7 +7,6 @@ export class ButtondirectiveDirective {
 
   private _type!: string;
   private _isDisabled!: boolean;
-
   constructor(private el: ElementRef, private renderer: Renderer2) { }
 
   @HostListener('mouseenter') onMouseEnter() {

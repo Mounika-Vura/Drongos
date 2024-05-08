@@ -16,8 +16,14 @@ import { DesktopScreenComponent } from './components/primitive/forms/customForms
 import { ButtondirectiveDirective } from './components/primitive/buttondirective.directive';
 import { ButtonsComponent } from './components/primitive/buttons/buttons.component';
 import{FontAwesomeModule}from'@fortawesome/angular-fontawesome';
-import { GroupButtonComponent } from './components/primitive/group-button/group-button.component';
 import { FormsModule } from '@angular/forms';
+import { AccordionComponent } from './components/primitive/accordion/accordion.component';
+import { AccordionContentDirective } from './components/primitive/accordion-content.directive';
+import { AccordionDirective } from './components/primitive/accordion.directive';
+import { AccordionItemDirective } from './components/primitive/accordion-item.directive';
+//import { AccordionTitleDirective } from './components/primitive/accordion-title.directive';
+import { CommonModule } from '@angular/common';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,13 +40,18 @@ import { FormsModule } from '@angular/forms';
     DesktopScreenComponent,
     ButtondirectiveDirective,
     ButtonsComponent,
-    GroupButtonComponent,
+    AccordionComponent,
+    AccordionContentDirective,
+    AccordionDirective,
+    AccordionItemDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    CommonModule
+    //BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
