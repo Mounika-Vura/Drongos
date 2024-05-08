@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GroupButtonComponent } from './group-button.component';
+import { AccordionComponent } from './accordion.component';
 
-describe('GroupButtonComponent', () => {
-  let component: GroupButtonComponent;
-  let fixture: ComponentFixture<GroupButtonComponent>;
+describe('AccordionComponent', () => {
+  let component: AccordionComponent;
+  let fixture: ComponentFixture<AccordionComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [GroupButtonComponent]
+      declarations: [AccordionComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(GroupButtonComponent);
+    fixture = TestBed.createComponent(AccordionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

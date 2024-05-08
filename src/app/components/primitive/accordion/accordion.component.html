@@ -1,0 +1,44 @@
+<!-- <section class="accordion" >
+  <div *ngFor="let item of items; index as i" class="accordion__item" [class.disabled]="item.disabled" 
+    [class.active]="expanded.has(i)" >
+    <header class="accordion__header" (click)="item.disabled ? {} :toggleState(i)" [bg_color]="bg_color"  [disabled]="item.disabled" appAccordion>
+      <ng-container *ngTemplateOutlet="item?.customTitle?.templateRef || defaultTitle; context: {$implicit: item, index: i, toggle: getToggleFunction(i)}"></ng-container>
+      <button class="accordion__toggle-btn" [disabled]="item.disabled" [class.active]="expanded.has(i)">
+        <svg  class="btn_svg" width="25" height="25" fill="currentColor" viewBox="0 0 192 512" xmlns="http://www.w3.org/2000/svg">
+          <path d="m0 384.662v-257.324c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284l-128.662 128.662c-12.599 12.6-34.142 3.676-34.142-14.142z"/>
+        </svg>
+      </button>
+    </header>
+    <div class="accordion__content" [class.expanded]="expanded.has(i)">
+      <ng-container *ngTemplateOutlet="item?.content?.templateRef || defaultTemplate"></ng-container>
+      <ng-template #defaultTemplate>
+      </ng-template>
+    </div>
+  </div>
+</section>
+
+<ng-template #defaultTitle let-item let-index="index" >
+  <p class="accordion__title">{{item?.title}}</p>
+</ng-template> -->
+
+
+<section class="accordion">
+  <div *ngFor="let item of items; index as i" class="accordion__item" [class.disabled]="item.disabled" [class.active]="expanded.has(i)">
+    <header class="accordion__header" (click)="item.disabled ? {} : toggleState(i)" [bg_color]="bg_color" [disabled]="item.disabled" appAccordion>
+      <p class="accordion__title">{{ item.title }}</p>
+      <button class="accordion__toggle-btn" [disabled]="item.disabled" [class.active]="expanded.has(i)">
+
+        <svg class="btn_svg" width="25" height="25" fill="currentColor" viewBox="0 0 192 512" xmlns="http://www.w3.org/2000/svg">
+          <path d="m0 384.662v-257.324c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284l-128.662 128.662c-12.599 12.6-34.142 3.676-34.142-14.142z"/>
+        </svg>
+
+      </button>
+    </header>
+    <div class="accordion__content" [class.expanded]="expanded.has(i)">
+      <ng-container *ngTemplateOutlet="item?.content?.templateRef || defaultTemplate"></ng-container>
+      <ng-template #defaultTemplate>
+        
+      </ng-template>
+    </div>
+  </div>
+</section>
