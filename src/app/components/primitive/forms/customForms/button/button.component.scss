@@ -1,0 +1,20 @@
+//@import 'variables';
+$pink: #E85B81;
+$font-stack: Roboto;
+$borderColor:#B5B5B5;
+$btnHoverColor:#C12F5D;
+
+input[type=submit] {
+    width: 159px;
+    height: 48px;
+    background-color: $pink;
+    color: white;
+    border:none;
+    border-radius: 8px;
+    box-sizing: border-box;
+  }
+  
+  input[type=submit]:hover {
+    background-color:$btnHoverColor;
+  }
+

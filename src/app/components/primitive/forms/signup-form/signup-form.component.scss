@@ -1,0 +1,43 @@
+//@import 'variables';
+$pink: #E85B81;
+$font-stack: Roboto;
+$borderColor:#B5B5B5;
+$btnHoverColor:#C12F5D;
+
+form{
+    padding-left: 51px;
+}
+
+.formgroup-submit{
+    padding-top: 12px;
+}
+
+label{
+    font-style: roboto;
+    font-size: 16px;
+    color: $borderColor;
+    padding: 0 0 13px 2px;
+}
+input[type=text],  input[type=email],input[type=password],input[type=number] {
+    height: 56px;
+    width: 350px;
+    border:1px solid #E1E1E1;
+    border-radius: 10px;
+    box-sizing: border-box;
+  }
+
+  
+  input[type=submit] {
+    width: 159px;
+    height: 48px;
+    background-color: $pink;
+    color: white;
+    border:none;
+    border-radius: 8px;
+    box-sizing: border-box;
+  }
+  
+  input[type=submit]:hover {
+    background-color:$btnHoverColor;
+  }
+
