@@ -1,13 +1,10 @@
 import {
   Component,
   ContentChildren,
-  ElementRef,
   Input,
-  QueryList,
-  Renderer2
+  QueryList
 } from "@angular/core";
 import { AccordionItemDirective } from "../accordion-item.directive";
-
 
 @Component({
   selector: "accordion",
@@ -16,8 +13,7 @@ import { AccordionItemDirective } from "../accordion-item.directive";
 })
 export class AccordionComponent {
 
-  expanded = new Set<number>();
-  
+  expanded = new Set<number>();  
   @Input() multiple!: boolean;
   @Input() disabled!: boolean;
   @Input() bg_color!: string;
@@ -41,5 +37,4 @@ export class AccordionComponent {
     }
   };
 
-  
 }

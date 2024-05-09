@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -33,17 +33,8 @@ export class AppComponent {
    
    multiple = false;
    disabled:boolean=true;
-   //#E85B81---------#C12F5D
-   //bg_color="white";
+  
  
-   items =[
-    'Layout' ,
-    'Media' ,
-    'Typography',
-     'Forms' ,
-   'Custom Layout' 
-   ];
-
   layoutItems = [
     { icon: 'empty-box' },
     { icon: 'column2_box' },
@@ -64,12 +55,6 @@ export class AppComponent {
     { icon: 'Heading' , label:'Heading'},
     { icon: 'TextLink' , label:'TextLink'}
   ]
-
-  // buttons = [
-  //   { header: 'Template Forms' },
-  //   { header: 'Custom Forms' },
-  //   { header: 'Form Elements' }
-  // ];
 
   FormElements = [
     { icon: 'TextArea', label:'TextArea' },
