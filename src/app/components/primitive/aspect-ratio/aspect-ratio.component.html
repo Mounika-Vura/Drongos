@@ -1,0 +1,16 @@
+<div class="container" >
+    <div class="widthXheight"  >
+      <ng-container *ngIf="!showEditInputs; else editMode">
+        W: {{ size.w }} X H: {{ size.h }}
+      </ng-container>
+      <ng-template #editMode>
+        <span class="input-group">
+          W: <input type="number" id="widthInput" [(ngModel)]="size.w" (keyup.enter)="applyChanges()" style="width: 60px;"> X
+          <input type="number" id="heightInput" [(ngModel)]="size.h" (keyup.enter)="applyChanges()" style="width: 60px;"> H
+        </span>
+      </ng-template>
+      <button class="edit-container" (click)="toggleEdit()">
+        <i class="fas fa-pencil-alt"></i>
+      </button>
+    </div>
+  </div>

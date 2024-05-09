@@ -1,0 +1,45 @@
+.container {
+    background-color: pink;
+    color: white;
+    padding: 20px;
+    height: 5px;
+    width:  250px;
+ 
+}
+ 
+.widthXheight {
+    display: flex;
+    align-items: center;
+}
+ 
+.edit-container {
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-left: 10px;
+}
+ 
+.edit-inputs {
+    margin-top: 10px;
+}
+ 
+.input-group {
+    margin-bottom: 10px;
+}
+ 
+input[type="number"] {
+    width: 100px;
+}
+ 
+button {
+    background-color: white;
+    color: pink;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+ 
+button:hover {
+    background-color: #eee;
+}

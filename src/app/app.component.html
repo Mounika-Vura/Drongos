@@ -1,26 +1,17 @@
-<!--[label]="reset"-->
-<!-- <app-buttons [type]="'primary'" [widthbtn]="w" [heightbtn]="h" [border_radius]="'none'"> Submit </app-buttons>&nbsp; -->
-<!-- <app-buttons [type]="alternativebtn" [isDisabled]="isDisabled">Submit</app-buttons>&nbsp;
+<!-- Submit Button starts-->
+<!-- <app-buttons [type]="'primary'" [widthbtn]="w" [heightbtn]="h" [border_radius]="'none'"> Submit </app-buttons>&nbsp; 
+<app-buttons [type]="alternativebtn" [isDisabled]="isDisabled">Submit</app-buttons>&nbsp;
 <app-buttons [type]="secondarybtn" >Submit</app-buttons><br><br><br> -->
+<!-- Submit Button ends-->
 
-  <!-- <app-group-button [icons]="icons" [orientation]="orientation">
-  </app-group-button> -->
+<!--Group Button Starts-->
+<app-group-button orientation="horizontal" (iconSelected)="onIconSelected($event)">
+  <div *ngFor="let icon of icons" title="{{icon}}" appGroupButtonDirective>
+  </div>
+</app-group-button>
+<!--Group Button ends-->
 
-
-  
-<!--<h1>Hello Drongos</h1>
- <app-input-box></app-input-box><br><br><hr><br><br>
-<app-button></app-button> <br><br><hr><br><br>
-<app-login-form></app-login-form> <br><br><hr><br><br>
-<app-signup-form></app-signup-form> <br><br><hr><br><br>
-<app-feedback-form></app-feedback-form> <br><br><hr><br><br>
-<app-button></app-button> <br><br><hr><br><br>
-<app-textarea></app-textarea> <br><br><hr><br><br>
-<app-labels></app-labels> <br><br><hr><br><br>
-<app-radiobutton></app-radiobutton> <br><br><hr><br><br>
-<app-checkbox></app-checkbox> <br><br><hr><br><br>
-<app-viewport></app-viewport> <br><br><hr><br><br>-->
-
+<!--Accordian Starts-->
 <accordion [multiple]="multiple" [bg_color]="'#E85B81'">
   <div class="header" title="Layout"  [disabled]="disabled" accordion-item >
       <ng-template accordionContent>      
@@ -82,3 +73,8 @@
   </ng-template>
 </div>    
 </accordion>
+<!--Accordian ends-->
+
+<!--FrameComponent Starts-->
+<app-frame-component [selectedIcon]="selectedIcon" [groupButton]="groupButton"></app-frame-component>
+<!--FrameComponent ends-->
