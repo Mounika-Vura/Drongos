@@ -1,33 +1,5 @@
-// // import { Component } from '@angular/core';
-
-// // @Component({
-// //   selector: 'app-group-button',
-// //   templateUrl: './group-button.component.html',
-// //   styleUrl: './group-button.component.scss'
-// // })
-// // export class GroupButtonComponent {
-
-// // }
-// // group-button.component.ts
-// import { Component, Input } from '@angular/core';
-
-// @Component({
-//   selector: 'app-group-button',
-//   templateUrl: './group-button.component.html',
-//   styleUrls: ['./group-button.component.scss']
-// })
-// export class GroupButtonComponent {
-//   @Input() icons: string[] = [];
-//   @Input() orientation: string = '';
-//   selectedIndex: number | null = null;
-  
-//   selectedIcon(index: number): void {
-//     this.selectedIndex = this.selectedIndex === index ? null : index;
-//     console.log(this.orientation);
-//   }
-//   }
-// group-button.component.ts
-import { Component, ElementRef, Input } from '@angular/core';
+import { Component, ContentChildren, ElementRef, EventEmitter, Input, Output, QueryList } from '@angular/core';
+import { GroupButtonDirectiveDirective } from '../group-button-directive.directive';
 
 @Component({
   selector: 'app-group-button',
@@ -35,13 +7,32 @@ import { Component, ElementRef, Input } from '@angular/core';
   styleUrls: ['./group-button.component.scss']
 })
 export class GroupButtonComponent {
-  constructor(private el: ElementRef) { }
+  @ContentChildren(GroupButtonDirectiveDirective) icons!: QueryList<GroupButtonDirectiveDirective>;
+  @Output() iconSelected = new EventEmitter<string>();
+  @Input() orientation: string = "horizontal";
+  selectedIconIndex: number = 0;
 
-  @Input() icons: string[] = [];
-  @Input() orientation: string = '';
-  selectedIconIndex: number | null = null;
+  constructor() {}
 
-  selectedIcon(index: number): void {
-   this.selectedIconIndex = this.selectedIconIndex === index ? null : index;
+  itemClicked: boolean[] = [];
+
+  ngAfterContentInit() {
+    this.icons.forEach(() => {
+      this.itemClicked.push(false);
+    });
+    this.itemClicked[0] = true;
+  }
+
+  selectedIcon(index: number) {
+    this.icons.forEach((icon, i) => {
+      if (i === index) {
+        this.itemClicked[i] = true;
+        this.selectedIconIndex = i;
+        // Emitting title property of the icon instead of icon itself
+        this.iconSelected.emit(icon.title); 
+      } else {
+        this.itemClicked[i] = false;
+      }
+    });
   }
 }
