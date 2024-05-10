@@ -28,7 +28,7 @@ export class FrameComponentComponent {
  
   @ViewChild('topBar') topBarRef!: ElementRef;
  
-  position: { x: number, y: number } = { x: 450, y: 100 };
+  position: { x: number, y: number } = { x: 10, y: 10 };
  
   size: { w: number, h: number } = { w: 1000, h: 700 };
  
