@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="header">
+        <app-group-button  class="view" orientation="horizontal"  (iconSelected)="onIconSelected($event)">
+            <div *ngFor="let icon of icons" title="{{icon}}" appGroupButtonDirective>
+            </div>
+        </app-group-button>
+    </div>
+ 
+    <div class="main-content">
+ 
+        <div class="main-sidebar">
+ 
+            <div class="sub-sidebar">Sub</div>
+ 
+            <div class="sub-sidebar1"><app-accordion-main></app-accordion-main></div>
+ 
+ 
+ 
+        </div>
+ 
+        <div class="content">
+            <!-- <img src="https://hips.hearstapps.com/ghk.h-cdn.co/assets/16/08/gettyimages-147786673.jpg?crop=0.4444444444444445xw:1xh;center,top&resize=980:*"
+                alt="Description of the image" width="100" height="150" appZoom /> -->
+ 
+                <app-frame-component [selectedIcon]="selectedIcon" [groupButton]="groupButton"></app-frame-component>
+        </div>
+ 
+        <div class="sidebar-right">Sidebar Right</div>
+    </div>
+ 
+    <div class="footer">Footer</div>
+</div>

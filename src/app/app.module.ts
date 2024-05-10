@@ -15,6 +15,9 @@ import { GroupButtonDirectiveDirective } from './components/primitive/group-butt
 import { AspectRatioComponent } from './components/primitive/aspect-ratio/aspect-ratio.component';
 import { FrameComponentComponent } from './components/primitive/frame-component/frame-component.component';
 import { GroupButtonComponent } from './components/primitive/group-button/group-button.component';
+import { ZoomScrollDirective } from './zoomscroll.directive';
+import { ScreenLayoutComponent } from './components/primitive/screen-layout/screen-layout.component';
+import { AccordionMainComponent } from './components/primitive/accordion-main/accordion-main.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { GroupButtonComponent } from './components/primitive/group-button/group-
     GroupButtonDirectiveDirective,
     AspectRatioComponent,
     FrameComponentComponent,
-    GroupButtonComponent
+    GroupButtonComponent,
+    ScreenLayoutComponent,
+    ZoomScrollDirective,
+    AccordionMainComponent
   ],
   imports: [
     BrowserModule,
