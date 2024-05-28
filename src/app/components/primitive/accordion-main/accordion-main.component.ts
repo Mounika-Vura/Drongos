@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
  
 @Component({
   selector: 'app-accordion-main',
@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class AccordionMainComponent {
   w="260px";
   h="60px";
-   multiple = true;
+   multiple = false;
    disabled:boolean=true;
   layoutItems = [
     { icon: 'empty-box' },
@@ -18,7 +18,6 @@ export class AccordionMainComponent {
     { icon: 'column4_box' },
     { icon: 'column41_box' }
   ];
- 
   mediaItems = [
     { icon: 'image', label:'Image' },
     { icon: 'video' , label:'Video'},
