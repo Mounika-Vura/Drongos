@@ -1,5 +1,6 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, ElementRef, Inject, Input, ViewChild } from '@angular/core';
+import { Component, ComponentFactoryResolver, ElementRef, Inject, Input, ViewChild, ViewContainerRef } from '@angular/core';
+import { ButtonsComponent } from '../buttons/buttons.component';
  
 export type ResizeAnchorType =
   | 'top'
@@ -21,7 +22,7 @@ export type ResizeDirectionType =
 export class FrameComponentComponent {
  
   @Input() selectedIcon!:string; 
-  @Input() groupButton!: { viewName: string, width: number, height: number }[];
+  @Input() groupButton!: { viewName: string, width: number, height: number,x:number,y:number }[];
   @ViewChild('resizeCorner') resizeCornerRef!: ElementRef;
  
   @ViewChild('wrapper') wrapperRef!: ElementRef;
@@ -40,14 +41,32 @@ export class FrameComponentComponent {
   maxSize: { w: number, h: number } = { w: 1000, h: 800 };
  
   constructor(@Inject(DOCUMENT) private _document: Document,
-              private _el: ElementRef) { }
+              private _el: ElementRef,private componentFactoryResolver: ComponentFactoryResolver) { }
 
+
+              @ViewChild('viewport', { read: ViewContainerRef }) viewport!: ViewContainerRef;
+            
+              addDynamicButton() {
+              const componentFactory = this.componentFactoryResolver.resolveComponentFactory(ButtonsComponent);
+                const projectableNodes = [
+                  [document.createTextNode('Click me!')]
+                ]
+                const componentRef = this.viewport.createComponent(componentFactory, 0, undefined, projectableNodes);
+                const dynamicButtonInstance = componentRef.instance;
+                  dynamicButtonInstance.type='primary'
+                  dynamicButtonInstance.border_radius='10px'
+                 dynamicButtonInstance.heightbtn='80px'
+                 dynamicButtonInstance.widthbtn='150px'
+              }
+              
               ngOnChanges() {
                 if (this.selectedIcon) {
                   const iconInfo = this.groupButton.find(icon => icon.viewName === this.selectedIcon);
                   if (iconInfo) {
                     this.size.w = iconInfo.width;
                     this.size.h = iconInfo.height;
+                    this.position.x=iconInfo.x;
+                    this.position.y=iconInfo.y;
                   }
                 }
               }
@@ -147,7 +166,5 @@ export class FrameComponentComponent {
  
     this._document.addEventListener('mousemove', duringResize);
     this._document.addEventListener('mouseup', finishResize);
-  }
- 
- 
+  } 
 }

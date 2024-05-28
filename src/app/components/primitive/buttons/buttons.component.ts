@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-buttons',
@@ -15,6 +15,7 @@ export class ButtonsComponent {
  @Input() widthbtn!:string; 
  @Input() heightbtn!:string; 
  @Input() border_radius!:string;
+ @Output() onClick: EventEmitter<void> = new EventEmitter<void>();
  
 //  ngOnChanges()
 //  {
