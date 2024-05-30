@@ -42,22 +42,6 @@ export class FrameComponentComponent {
  
   constructor(@Inject(DOCUMENT) private _document: Document,
               private _el: ElementRef,private componentFactoryResolver: ComponentFactoryResolver) { }
-
-
-              @ViewChild('viewport', { read: ViewContainerRef }) viewport!: ViewContainerRef;
-            
-              addDynamicButton() {
-              const componentFactory = this.componentFactoryResolver.resolveComponentFactory(ButtonsComponent);
-                const projectableNodes = [
-                  [document.createTextNode('Click me!')]
-                ]
-                const componentRef = this.viewport.createComponent(componentFactory, 0, undefined, projectableNodes);
-                const dynamicButtonInstance = componentRef.instance;
-                  dynamicButtonInstance.type='primary'
-                  dynamicButtonInstance.border_radius='10px'
-                 dynamicButtonInstance.heightbtn='80px'
-                 dynamicButtonInstance.widthbtn='150px'
-              }
               
               ngOnChanges() {
                 if (this.selectedIcon) {

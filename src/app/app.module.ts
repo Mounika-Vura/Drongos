@@ -18,6 +18,7 @@ import { GroupButtonComponent } from './components/primitive/group-button/group-
 import { ZoomScrollDirective } from './zoomscroll.directive';
 import { ScreenLayoutComponent } from './components/primitive/screen-layout/screen-layout.component';
 import { AccordionMainComponent } from './components/primitive/accordion-main/accordion-main.component';
+import { TemplateFormComponent } from './components/primitive/template-form/template-form.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { AccordionMainComponent } from './components/primitive/accordion-main/ac
     GroupButtonComponent,
     ScreenLayoutComponent,
     ZoomScrollDirective,
-    AccordionMainComponent
+    AccordionMainComponent,
+    TemplateFormComponent,
   ],
   imports: [
     BrowserModule,
