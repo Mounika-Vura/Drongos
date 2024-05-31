@@ -9,7 +9,7 @@
 
         <div class="main-sidebar">
 
-            <div class="sub-sidebar">
+            <div class="sub-sidebar" >
                 <div class="header">
                     <app-group-button orientation="vertical" (iconSelected)="onIconSelected($event)">
                         <div class="icon-size" *ngFor="let icon of sideBarIcons" title="{{icon}}" appGroupButtonDirective></div>
@@ -17,12 +17,12 @@
                 </div>
             </div>
 
-            <div class="sub-sidebar1">
+            <div class="sub-sidebar1" class="scrollable-content">
                 <accordion [multiple]="multiple" [bg_color]="'#E85B81'">
                     <div class="header" title="Layout" accordion-item>
                         <ng-template accordionContent>
                             <span class="icon" *ngFor="let item of layoutItems; let j=index">
-                                <img src="assets/images/{{item.icon}}.svg" style="width: 50px; height: 50px; color: black;">
+                                <app-icon app-draggable icon="{{item.icon}}"></app-icon>
                             </span>
                         </ng-template>
                     </div>
@@ -30,7 +30,7 @@
                     <div class="header" title="Media" accordion-item>
                         <ng-template accordionContent>
                             <span class="icon" *ngFor="let item of mediaItems; let j=index">
-                                <img src="assets/images/{{item.icon}}.svg" style="width: 50px; height: 50px; color: black;">
+                                <app-icon appImage icon="{{item.icon}}"></app-icon>
                                 <p>{{item.label}}</p>
                             </span>
                         </ng-template>
@@ -39,7 +39,7 @@
                     <div class="header" title="Typography" accordion-item>
                         <ng-template accordionContent>
                             <span class="icon" *ngFor="let item of typographyItems; let j=index">
-                                <img src="assets/images/{{item.icon}}.svg" style="width: 50px; height: 50px; color: black;">
+                                <app-icon icon="{{item.icon}}"></app-icon>
                                 <p class="labelText">{{item.label}}</p>
                             </span>
                         </ng-template>
@@ -50,7 +50,7 @@
                             <accordion [multiple]="multiple" [bg_color]="'white'">
                                 <div class="header" title="Template Forms" accordion-item>
                                     <ng-template accordionContent>
-                                        <app-buttons [type]="'secondary'" [widthbtn]="w" [heightbtn]="h" [border_radius]="'none'" (click)="addElement('login')">
+                                        <app-buttons  [type]="'secondary'" [widthbtn]="w" [heightbtn]="h" [border_radius]="'none'" (click)="addElement('login')">
                                             <div class="btn"><img src="assets/images/formIcon.svg">Login Form</div>
                                         </app-buttons>
                                         <app-buttons [type]="'secondary'" [widthbtn]="w" [heightbtn]="h" [border_radius]="'none'" (click)="addElement('signup')">
@@ -71,7 +71,7 @@
                                 <div class="header" title="Form Elements" accordion-item>
                                     <ng-template accordionContent>
                                         <span class="icon" *ngFor="let item of FormElements; let j=index">
-                                            <img src="assets/images/{{item.icon}}.svg" style="width: 50px; height: 50px; color: black;">
+                                            <app-icon  icon="{{item.icon}}"></app-icon>
                                             <p class="labelText">{{item.label}}</p>
                                         </span>
                                     </ng-template>
@@ -91,7 +91,7 @@
             </div>
         </div>
         <div class="content">
-            <app-frame-component #formContainer [selectedIcon]="selectedIcon" [groupButton]="groupButton"></app-frame-component>
+            <app-frame-component class="frame-wrapper" #frameTemplate [selectedIcon]="selectedIcon" [groupButton]="groupButton"></app-frame-component>
         </div>
         <div class="sidebar-right">Sidebar Right</div>
     </div>
