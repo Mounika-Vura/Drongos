@@ -17,8 +17,10 @@ import { FrameComponentComponent } from './components/primitive/frame-component/
 import { GroupButtonComponent } from './components/primitive/group-button/group-button.component';
 import { ZoomScrollDirective } from './zoomscroll.directive';
 import { ScreenLayoutComponent } from './components/primitive/screen-layout/screen-layout.component';
-import { AccordionMainComponent } from './components/primitive/accordion-main/accordion-main.component';
 import { TemplateFormComponent } from './components/primitive/template-form/template-form.component';
+import { IconComponent } from './components/primitive/icon/icon.component';
+import { DragmediaDirective } from './components/primitive/dragmedia.directive';
+import { DragDropDirective } from './components/primitive/drag-drop.directive';
 
 @NgModule({
   declarations: [
@@ -35,8 +37,10 @@ import { TemplateFormComponent } from './components/primitive/template-form/temp
     GroupButtonComponent,
     ScreenLayoutComponent,
     ZoomScrollDirective,
-    AccordionMainComponent,
     TemplateFormComponent,
+    IconComponent,
+    DragmediaDirective,
+    DragDropDirective,
   ],
   imports: [
     BrowserModule,

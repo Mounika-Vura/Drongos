@@ -1,5 +1,7 @@
 import { Component, ComponentFactoryResolver, ElementRef, QueryList, Renderer2, ViewChild, ViewChildren, ViewContainerRef } from "@angular/core";
 import { TemplateFormComponent } from "../template-form/template-form.component";
+import { DragDropDirective } from "../drag-drop.directive";
+import { DragmediaDirective } from "../dragmedia.directive";
  
 @Component({
   selector: 'app-screen-layout',
@@ -28,7 +30,7 @@ export class ScreenLayoutComponent {
   //=================Accordian============================//
   w="260px";
   h="60px";
-   multiple = false;
+   multiple = true;
    disabled:boolean=true;
   layoutItems = [
     { icon: 'empty-box' },
@@ -59,11 +61,26 @@ export class ScreenLayoutComponent {
   ]
   /* Template Forms */
 
-@ViewChild('formContainer', { read: ViewContainerRef, static: true }) 
+@ViewChild('frameTemplate', { read: ViewContainerRef, static: true }) 
 formContainer!: ViewContainerRef;
 
  addElement(type: string): void {
     const componentRef = this.formContainer.createComponent(TemplateFormComponent);
      componentRef.instance.formType = type;
+ }
+
+ 
+ @ViewChild('frameTemplate', { static: true, read: ElementRef })
+ frameTemplate!: ElementRef<HTMLElement>;
+ @ViewChildren(DragDropDirective) draggableIcons!: QueryList<DragDropDirective>;
+ @ViewChildren(DragmediaDirective) draggablemedia!: QueryList<DragmediaDirective>;
+
+ ngAfterViewInit() {
+   this.draggableIcons.forEach((directive) => {
+     directive.frame = this.frameTemplate.nativeElement;
+   });
+   this.draggablemedia.forEach((directive) => {
+    directive.frame = this.frameTemplate.nativeElement;
+  });
  }
 }
