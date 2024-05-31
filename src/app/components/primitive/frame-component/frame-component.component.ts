@@ -1,6 +1,8 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, ComponentFactoryResolver, ElementRef, Inject, Input, ViewChild, ViewContainerRef } from '@angular/core';
 import { ButtonsComponent } from '../buttons/buttons.component';
+import { ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
  
 export type ResizeAnchorType =
   | 'top'
@@ -17,10 +19,17 @@ export type ResizeDirectionType =
 @Component({
   selector: 'app-frame-component',
   templateUrl: './frame-component.component.html',
-  styleUrl: './frame-component.component.scss'
+  styleUrl: './frame-component.component.scss',
+  changeDetection: ChangeDetectionStrategy.Default
+
 })
 export class FrameComponentComponent {
- 
+  width!: number;
+
+  ngAfterViewInit() {
+    this.width = 1536;
+    this.cdr.detectChanges();
+  }
   @Input() selectedIcon!:string; 
   @Input() groupButton!: { viewName: string, width: number, height: number,x:number,y:number }[];
   @ViewChild('resizeCorner') resizeCornerRef!: ElementRef;
@@ -41,7 +50,7 @@ export class FrameComponentComponent {
   maxSize: { w: number, h: number } = { w: 1000, h: 800 };
  
   constructor(@Inject(DOCUMENT) private _document: Document,
-              private _el: ElementRef,private componentFactoryResolver: ComponentFactoryResolver) { }
+              private _el: ElementRef,private componentFactoryResolver: ComponentFactoryResolver, private cdr: ChangeDetectorRef) { }
               
               ngOnChanges() {
                 if (this.selectedIcon) {
