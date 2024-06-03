@@ -39,8 +39,8 @@
                     <div class="header" title="Typography" accordion-item>
                         <ng-template accordionContent>
                             <span class="icon" *ngFor="let item of typographyItems; let j=index">
-                                <app-icon icon="{{item.icon}}"></app-icon>
-                                <p class="labelText">{{item.label}}</p>
+                                <app-icon icon="{{item.icon}}" (click)="onClick(item.label)"></app-icon>
+                                <p class="labelText" (click)="onClick(item.label)">{{item.label}}</p>
                             </span>
                         </ng-template>
                     </div>

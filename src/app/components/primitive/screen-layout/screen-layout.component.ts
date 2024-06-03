@@ -2,6 +2,7 @@ import { Component, ComponentFactoryResolver, ElementRef, QueryList, Renderer2, 
 import { TemplateFormComponent } from "../template-form/template-form.component";
 import { DragDropDirective } from "../drag-drop.directive";
 import { DragmediaDirective } from "../dragmedia.directive";
+import { TypographyComponent } from "../typography/typography.component";
  
 @Component({
   selector: 'app-screen-layout',
@@ -10,7 +11,7 @@ import { DragmediaDirective } from "../dragmedia.directive";
 })
 export class ScreenLayoutComponent {
 
-  constructor(private renderer: Renderer2, private el: ElementRef,private componentFactoryResolver: ComponentFactoryResolver) {}
+  constructor(private resolver: ComponentFactoryResolver, private renderer: Renderer2, private el: ElementRef,private componentFactoryResolver: ComponentFactoryResolver) {}
 
   icons: string[] = ['desktop-alt', 'tablet-alt', 'mobile-alt'];
   alignmentIcons: string[] = ['align-left', 'align-center', 'align-right','align-justify',];
@@ -20,13 +21,20 @@ export class ScreenLayoutComponent {
     { viewName: 'tablet-alt', width:300, height: 1024,x:310,y:30 },
     { viewName: 'mobile-alt', width: 150, height: 900,x:380,y:30 },
   ];
- 
+  @ViewChild('typoContainer', { read: ViewContainerRef  }) 
+  typoContainer!: ViewContainerRef;
   selectedIcon: string=this.icons[0];
  
   onIconSelected(icon: string) {
     this.selectedIcon = icon;
     console.log("screen Layout-->",this.selectedIcon)
   }
+  onClick(label: string ) {
+    const factory = this.resolver.resolveComponentFactory(TypographyComponent);
+   const componentRef = this.formContainer.createComponent(factory);
+   componentRef.instance.typographytype = label;
+ }
+
   //=================Accordian============================//
   w="260px";
   h="60px";

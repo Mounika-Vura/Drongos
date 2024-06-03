@@ -21,6 +21,7 @@ import { TemplateFormComponent } from './components/primitive/template-form/temp
 import { IconComponent } from './components/primitive/icon/icon.component';
 import { DragmediaDirective } from './components/primitive/dragmedia.directive';
 import { DragDropDirective } from './components/primitive/drag-drop.directive';
+import { TypographyComponent } from './components/primitive/typography/typography.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { DragDropDirective } from './components/primitive/drag-drop.directive';
     IconComponent,
     DragmediaDirective,
     DragDropDirective,
+    TypographyComponent,
   ],
   imports: [
     BrowserModule,
