@@ -1,7 +1,7 @@
-.content-wrapper {
+.frame-wrapper {
     position: absolute;
-    background-color: lightblue;
-    overflow: auto;
+    border: 2px solid black;
+    display: flex;
 }
 
 .top-bar-wrapper {

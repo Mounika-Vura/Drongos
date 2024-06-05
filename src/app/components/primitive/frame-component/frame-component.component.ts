@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, ComponentFactoryResolver, ElementRef, Inject, Input, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, ComponentFactoryResolver, ElementRef, EventEmitter, Inject, Input, Output, ViewChild, ViewContainerRef } from '@angular/core';
 import { ButtonsComponent } from '../buttons/buttons.component';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
@@ -25,10 +25,15 @@ export type ResizeDirectionType =
 })
 export class FrameComponentComponent {
   width!: number;
+  @Output() messageEvent = new EventEmitter<any>();
+
+  @ViewChild('wrapper', { static: true, read: ElementRef })
+  frameTemplate!: ElementRef<HTMLElement>;
 
   ngAfterViewInit() {
     this.width = 1536;
     this.cdr.detectChanges();
+    this.messageEvent.emit(this.frameTemplate);
   }
   @Input() selectedIcon!:string; 
   @Input() groupButton!: { viewName: string, width: number, height: number,x:number,y:number }[];

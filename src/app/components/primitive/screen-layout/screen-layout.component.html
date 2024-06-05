@@ -91,7 +91,7 @@
             </div>
         </div>
         <div class="content">
-            <app-frame-component class="frame-wrapper" #frameTemplate [selectedIcon]="selectedIcon" [groupButton]="groupButton"></app-frame-component>
+            <app-frame-component (messageEvent)="frameTemplate=$event" [selectedIcon]="selectedIcon" [groupButton]="groupButton"></app-frame-component>
         </div>
         <div class="sidebar-right">Sidebar Right</div>
     </div>

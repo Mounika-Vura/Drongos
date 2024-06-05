@@ -78,11 +78,11 @@ formContainer!: ViewContainerRef;
  }
 
  
- @ViewChild('frameTemplate', { static: true, read: ElementRef })
- frameTemplate!: ElementRef<HTMLElement>;
  @ViewChildren(DragDropDirective) draggableIcons!: QueryList<DragDropDirective>;
  @ViewChildren(DragmediaDirective) draggablemedia!: QueryList<DragmediaDirective>;
 
+ frameTemplate:any;
+ 
  ngAfterViewInit() {
    this.draggableIcons.forEach((directive) => {
      directive.frame = this.frameTemplate.nativeElement;
