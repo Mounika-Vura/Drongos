@@ -9,10 +9,11 @@
 
         <div class="main-sidebar">
 
-            <div class="sub-sidebar" >
+            <div class="sub-sidebar">
                 <div class="header">
                     <app-group-button orientation="vertical" (iconSelected)="onIconSelected($event)">
-                        <div class="icon-size" *ngFor="let icon of sideBarIcons" title="{{icon}}" appGroupButtonDirective></div>
+                        <div class="icon-size" *ngFor="let icon of sideBarIcons" title="{{icon}}"
+                            appGroupButtonDirective></div>
                     </app-group-button>
                 </div>
             </div>
@@ -22,7 +23,8 @@
                     <div class="header" title="Layout" accordion-item>
                         <ng-template accordionContent>
                             <span class="icon" *ngFor="let item of layoutItems; let j=index">
-                                <app-icon app-draggable icon="{{item.icon}}"></app-icon>
+                                <app-icon app-draggable icon="{{item.icon}}"
+                                    (click)="handleIconClick(item.icon)"></app-icon>
                             </span>
                         </ng-template>
                     </div>
@@ -50,20 +52,24 @@
                             <accordion [multiple]="multiple" [bg_color]="'white'">
                                 <div class="header" title="Template Forms" accordion-item>
                                     <ng-template accordionContent>
-                                        <app-buttons  [type]="'secondary'" [widthbtn]="w" [heightbtn]="h" [border_radius]="'none'" (click)="addElement('login')">
+                                        <app-buttons [type]="'secondary'" [widthbtn]="w" [heightbtn]="h"
+                                            [border_radius]="'none'" (click)="addElement('login')">
                                             <div class="btn"><img src="assets/images/formIcon.svg">Login Form</div>
                                         </app-buttons>
-                                        <app-buttons [type]="'secondary'" [widthbtn]="w" [heightbtn]="h" [border_radius]="'none'" (click)="addElement('signup')">
+                                        <app-buttons [type]="'secondary'" [widthbtn]="w" [heightbtn]="h"
+                                            [border_radius]="'none'" (click)="addElement('signup')">
                                             <div class="btn"><img src="assets/images/formIcon.svg">SignUp Form</div>
                                         </app-buttons>
-                                        <app-buttons [type]="'secondary'" [widthbtn]="w" [heightbtn]="h" [border_radius]="'none'" (click)="addElement('feedback')">
+                                        <app-buttons [type]="'secondary'" [widthbtn]="w" [heightbtn]="h"
+                                            [border_radius]="'none'" (click)="addElement('feedback')">
                                             <div class="btn"><img src="assets/images/formIcon.svg">Feedback Form</div>
                                         </app-buttons>
                                     </ng-template>
                                 </div>
                                 <div class="header" title="Custom Forms" accordion-item>
                                     <ng-template accordionContent>
-                                        <app-buttons [type]="'secondary'" [widthbtn]="w" [heightbtn]="h" [border_radius]="'none'">
+                                        <app-buttons [type]="'secondary'" [widthbtn]="w" [heightbtn]="h"
+                                            [border_radius]="'none'">
                                             <div class="btn1"><img src="assets/images/plus_symbol.svg">Add Form</div>
                                         </app-buttons>
                                     </ng-template>
@@ -71,7 +77,7 @@
                                 <div class="header" title="Form Elements" accordion-item>
                                     <ng-template accordionContent>
                                         <span class="icon" *ngFor="let item of FormElements; let j=index">
-                                            <app-icon  icon="{{item.icon}}"></app-icon>
+                                            <app-icon icon="{{item.icon}}"></app-icon>
                                             <p class="labelText">{{item.label}}</p>
                                         </span>
                                     </ng-template>
@@ -91,7 +97,8 @@
             </div>
         </div>
         <div class="content">
-            <app-frame-component (messageEvent)="frameTemplate=$event" [selectedIcon]="selectedIcon" [groupButton]="groupButton"></app-frame-component>
+            <app-frame-component (messageEvent)="frameTemplate=$event" [selectedIcon]="selectedIcon"
+                [groupButton]="groupButton"></app-frame-component>
         </div>
         <div class="sidebar-right">Sidebar Right</div>
     </div>
