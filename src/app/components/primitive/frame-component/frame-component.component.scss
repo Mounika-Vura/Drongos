@@ -33,6 +33,9 @@
 
 .resizers {
     box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 
     .resizer {
@@ -95,4 +98,36 @@
         bottom: -3px;
         cursor: nesw-resize;
     }
+
+    // .empty-box-layout{
+    // .container {
+    //     display: flex;
+    //     width: 700px;
+    //     height: 500px;
+    //     border: 1px solid black;
+    //   }
+    // }
+
+    // .two-column-layout{
+    //     .container {
+    //         display: flex;
+    //         width: 700px;
+    //         height: 600px;
+    //         border: 1px solid black;
+    //       }
+
+    //       .column {
+    //         flex: 1;
+    //         border: 1px solid black; /* Just for visualization */
+    //       }
+
+    // }
+    
+    
+    
+    
+    
+
+
+      
 }

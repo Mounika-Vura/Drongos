@@ -1,7 +1,9 @@
 import {
   Component,
   ContentChildren,
+  EventEmitter,
   Input,
+  Output,
   QueryList
 } from "@angular/core";
 import { AccordionItemDirective } from "../accordion-item.directive";
@@ -36,5 +38,6 @@ export class AccordionComponent {
       this.expanded.add(index);
     }
   };
+
 
 }

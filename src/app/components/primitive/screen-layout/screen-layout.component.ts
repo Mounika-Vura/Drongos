@@ -3,6 +3,7 @@ import { TemplateFormComponent } from "../template-form/template-form.component"
 import { DragDropDirective } from "../drag-drop.directive";
 import { DragmediaDirective } from "../dragmedia.directive";
 import { TypographyComponent } from "../typography/typography.component";
+import { FrameComponentComponent } from "../frame-component/frame-component.component";
  
 @Component({
   selector: 'app-screen-layout',
@@ -24,6 +25,7 @@ export class ScreenLayoutComponent {
   @ViewChild('typoContainer', { read: ViewContainerRef  }) 
   typoContainer!: ViewContainerRef;
   selectedIcon: string=this.icons[0];
+  @ViewChild(FrameComponentComponent) frameComponent!: FrameComponentComponent;
  
   onIconSelected(icon: string) {
     this.selectedIcon = icon;
@@ -40,6 +42,7 @@ export class ScreenLayoutComponent {
   h="60px";
    multiple = true;
    disabled:boolean=true;
+   message: string= ""
   layoutItems = [
     { icon: 'empty-box' },
     { icon: 'column2_box' },
@@ -91,4 +94,10 @@ formContainer!: ViewContainerRef;
     directive.frame = this.frameTemplate.nativeElement;
   });
  }
+
+ handleIconClick(icon: string): void {
+  this.frameComponent.addLayout(icon);
 }
+}
+
+

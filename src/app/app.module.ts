@@ -22,6 +22,8 @@ import { IconComponent } from './components/primitive/icon/icon.component';
 import { DragmediaDirective } from './components/primitive/dragmedia.directive';
 import { DragDropDirective } from './components/primitive/drag-drop.directive';
 import { TypographyComponent } from './components/primitive/typography/typography.component';
+import { EmptyBoxLayoutComponent } from './components/primitive/layouts/empty-box-layout/empty-box-layout.component';
+import { TwoColumnLayoutComponent } from './components/primitive/layouts/two-column-layout/two-column-layout.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { TypographyComponent } from './components/primitive/typography/typograph
     DragmediaDirective,
     DragDropDirective,
     TypographyComponent,
+    EmptyBoxLayoutComponent,
+    TwoColumnLayoutComponent,
   ],
   imports: [
     BrowserModule,
