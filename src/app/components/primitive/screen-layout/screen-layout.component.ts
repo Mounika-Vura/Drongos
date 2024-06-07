@@ -3,6 +3,7 @@ import { TemplateFormComponent } from "../template-form/template-form.component"
 import { DragDropDirective } from "../drag-drop.directive";
 import { DragmediaDirective } from "../dragmedia.directive";
 import { TypographyComponent } from "../typography/typography.component";
+import { FrameComponentComponent } from "../frame-component/frame-component.component";
  
 @Component({
   selector: 'app-screen-layout',
@@ -72,6 +73,7 @@ export class ScreenLayoutComponent {
 @ViewChild('frameTemplate', { read: ViewContainerRef, static: true }) 
 formContainer!: ViewContainerRef;
 
+@ViewChild(FrameComponentComponent) frameComponent!: FrameComponentComponent;
  addElement(type: string): void {
     const componentRef = this.formContainer.createComponent(TemplateFormComponent);
      componentRef.instance.formType = type;
@@ -91,4 +93,9 @@ formContainer!: ViewContainerRef;
     directive.frame = this.frameTemplate.nativeElement;
   });
  }
+
+ 
+ handleIconClick(icon: string): void {
+  this.frameComponent.addLayout(icon);
+}
 }

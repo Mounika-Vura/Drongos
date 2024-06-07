@@ -1,8 +1,12 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, ComponentFactoryResolver, ElementRef, EventEmitter, Inject, Input, Output, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, ComponentFactoryResolver, ElementRef, EventEmitter, Inject, Input, Output, SimpleChanges, ViewChild, ViewContainerRef } from '@angular/core';
 import { ButtonsComponent } from '../buttons/buttons.component';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
+import { EmptyBoxLayoutComponent } from '../../layouts/empty-box-layout/empty-box-layout.component';
+import { TwoColumnLayoutComponent } from '../../layouts/two-column-layout/two-column-layout.component';
+// import { EmptyBoxLayoutComponent } from '../../layouts/empty-box-layout/empty-box-layout.component';
+// import { TwoColumnLayoutComponent } from '../../layouts/two-column-layout/two-column-layout.component';
  
 export type ResizeAnchorType =
   | 'top'
@@ -53,19 +57,27 @@ export class FrameComponentComponent {
  
   minSize: { w: number, h: number } = { w: 200, h: 400 };
   maxSize: { w: number, h: number } = { w: 1000, h: 800 };
+  @ViewChild('layoutContainer', { read: ViewContainerRef }) layoutContainer!: ViewContainerRef;
  
   constructor(@Inject(DOCUMENT) private _document: Document,
-              private _el: ElementRef,private componentFactoryResolver: ComponentFactoryResolver, private cdr: ChangeDetectorRef) { }
+              private _el: ElementRef,private resolver: ComponentFactoryResolver, private cdr: ChangeDetectorRef) { }
               
-              ngOnChanges() {
-                if (this.selectedIcon) {
+              ngOnInit(): void {
+                this.size = { w: 900, h: 700 };
+              }
+            
+              ngOnChanges(changes: SimpleChanges): void {
+                if (changes['selectedIcon'] && this.selectedIcon) {
                   const iconInfo = this.groupButton.find(icon => icon.viewName === this.selectedIcon);
                   if (iconInfo) {
                     this.size.w = iconInfo.width;
                     this.size.h = iconInfo.height;
-                    this.position.x=iconInfo.x;
-                    this.position.y=iconInfo.y;
+                    this.cdr.detectChanges(); // Mark the component for change detection
                   }
+                }
+            
+                if (changes['selectedIcon'] && this.selectedIcon) {
+                  this.addLayout(this.selectedIcon);
                 }
               }
             
@@ -139,21 +151,6 @@ export class FrameComponentComponent {
     this.size.h = Math.max(Math.min(dh, this.maxSize.h), this.minSize.h);
   }
  
-      // if (anchors.includes('left')) {
-      //   this.position.x = lastX + e.clientX - mouseX;
-      //   this.size.w = Math.max(dw, this.minSize.w);
-      // }
- 
-      // if (anchors.includes('top')) {
-      //   this.position.y = lastY + e.clientY - mouseY;
-      //   this.size.h = Math.max(dh, this.minSize.h);
-      // }
- 
-      // if (anchors.includes('bottom') || anchors.includes('right')) {
-      //   this.size.w = Math.max(dw, this.minSize.w);
-      //   this.size.h = Math.max(dh, this.minSize.h);
-      // }
- 
       this.lastSize = { ...this.size };
     };
  
@@ -165,4 +162,22 @@ export class FrameComponentComponent {
     this._document.addEventListener('mousemove', duringResize);
     this._document.addEventListener('mouseup', finishResize);
   } 
+
+  addLayout(icon: string): void {
+    this.layoutContainer.clear(); // Clear existing layout
+
+    switch (icon) {
+      case 'empty-box':
+        const emptyBoxFactory = this.resolver.resolveComponentFactory(EmptyBoxLayoutComponent);
+        this.layoutContainer.createComponent(emptyBoxFactory);
+        break;
+      case 'column2_box':
+        const twoColumnFactory = this.resolver.resolveComponentFactory(TwoColumnLayoutComponent);
+        this.layoutContainer.createComponent(twoColumnFactory);
+        break;
+      // Add more cases for other icons
+      default:
+        return;
+    }
+  }
 }
