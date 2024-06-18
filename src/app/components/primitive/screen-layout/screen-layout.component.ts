@@ -32,7 +32,7 @@ export class ScreenLayoutComponent {
   }
   onClick(label: string ) {
     const factory = this.resolver.resolveComponentFactory(TypographyComponent);
-   const componentRef = this.formContainer.createComponent(factory);
+   const componentRef = this.Container.createComponent(factory);
    componentRef.instance.typographytype = label;
  }
 
@@ -41,14 +41,62 @@ export class ScreenLayoutComponent {
   h="60px";
    multiple = true;
    disabled:boolean=true;
-  layoutItems = [
-    { icon: 'empty-box' },
-    { icon: 'column2_box' },
-    { icon: 'column22_box'},
-    { icon: 'column12_box' },
-    { icon: 'column4_box' },
-    { icon: 'column41_box' }
+   layoutItems = [
+    {
+      icon: 'empty-box',
+      label: 'Layout1' ,
+      grid: [
+        { cols: 4, rows: 4, color: 'lightblue', text: 'A' },
+      ]
+    },
+    {
+      icon: 'column2_box',
+      label: 'Layout2' ,
+      grid: [
+        { cols: 2, rows: 4, color: 'lightblue', text: 'A' },
+        { cols: 2, rows: 4, color: 'lightgreen', text: 'B' },
+      ]
+    },
+    {
+      icon: 'column22_box',
+      label: 'Layout3' ,
+      grid: [
+        { cols: 2, rows: 2, color: 'lightblue', text: 'A' },
+        { cols: 2, rows: 4, color: 'lightgreen', text: 'B' },
+        { cols: 2, rows: 2, color: 'lightcoral', text: 'C' },
+      ]
+    },
+    {
+      icon: 'column12_box',
+      label: 'Layout4' ,
+      grid: [
+        { cols: 2, rows: 4, color: 'lightblue', text: 'A' },
+        { cols: 2, rows: 2, color: 'lightgreen', text: 'B' },
+        { cols: 2, rows: 2, color: 'lightcoral', text: 'C' },
+      ]
+    },
+    {
+      icon: 'column4_box',
+      label: 'Layout5' ,
+      grid: [
+        { cols: 1, rows: 4, color: 'lightblue', text: 'A' },
+        { cols: 1, rows: 4, color: 'lightgreen', text: 'B' },
+        { cols: 1, rows: 4, color: 'lightpink', text: 'C' },
+        { cols: 1, rows: 4, color: 'lightcoral', text: 'D' },
+      ]
+    },
+    {
+      icon: 'column41_box',
+      label: 'Layout6' ,
+      grid: [
+        { cols: 3, rows: 2, color: 'lightblue', text: 'A' },
+        { cols: 1, rows: 2, color: 'lightgreen', text: 'B' },
+        { cols: 1, rows: 2, color: 'lightpink', text: 'C' },
+        { cols: 3, rows: 2, color: 'lightcoral', text: 'D' },
+      ]
+    }
   ];
+
   mediaItems = [
     { icon: 'image', label:'Image' },
     { icon: 'video' , label:'Video'},
@@ -70,32 +118,37 @@ export class ScreenLayoutComponent {
   ]
   /* Template Forms */
 
-@ViewChild('frameTemplate', { read: ViewContainerRef, static: true }) 
-formContainer!: ViewContainerRef;
+@ViewChild('Container', { read: ViewContainerRef, static: true }) 
+Container!: ViewContainerRef;
 
-@ViewChild(FrameComponentComponent) frameComponent!: FrameComponentComponent;
+// @ViewChild(FrameComponentComponent) frameComponent!: FrameComponentComponent;
  addElement(type: string): void {
-    const componentRef = this.formContainer.createComponent(TemplateFormComponent);
+    const componentRef = this.Container.createComponent(TemplateFormComponent);
      componentRef.instance.formType = type;
  }
-
  
+    //Layout starts
+@ViewChild('Container', { static: true }) layoutContainer!: FrameComponentComponent;
+// Method to create Template Form instances
+ addLayout(Labeltype: any): void {
+    this.layoutContainer.loadLayout(Labeltype);
+ }
+//Layout ends
+
+
+ //dragdrop start 
  @ViewChildren(DragDropDirective) draggableIcons!: QueryList<DragDropDirective>;
  @ViewChildren(DragmediaDirective) draggablemedia!: QueryList<DragmediaDirective>;
 
- frameTemplate:any;
+ frameTemplate1:any;
  
  ngAfterViewInit() {
    this.draggableIcons.forEach((directive) => {
-     directive.frame = this.frameTemplate.nativeElement;
+     directive.frame = this.frameTemplate1.nativeElement;
    });
    this.draggablemedia.forEach((directive) => {
-    directive.frame = this.frameTemplate.nativeElement;
+    directive.frame = this.frameTemplate1.nativeElement;
   });
  }
-
- 
- handleIconClick(icon: string): void {
-  this.frameComponent.addLayout(icon);
-}
+//dragdrop ends
 }
