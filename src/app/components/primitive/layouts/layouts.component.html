@@ -1,0 +1,7 @@
+<div *ngIf="layoutItem" class="grid-container">
+    <div
+      *ngFor="let g of layoutItem.grid"
+      class="grid-item"
+      [ngStyle]="{'grid-column': 'span ' + g.cols, 'grid-row': 'span ' + g.rows, 'background': g.color}">
+    </div>
+</div>

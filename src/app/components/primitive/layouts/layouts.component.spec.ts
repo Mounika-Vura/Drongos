@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EmptyBoxLayoutComponent } from './empty-box-layout.component';
+import { DemogridComponent } from './layouts.component';
 
-describe('EmptyBoxLayoutComponent', () => {
-  let component: EmptyBoxLayoutComponent;
-  let fixture: ComponentFixture<EmptyBoxLayoutComponent>;
+describe('DemogridComponent', () => {
+  let component: DemogridComponent;
+  let fixture: ComponentFixture<DemogridComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [EmptyBoxLayoutComponent]
+      declarations: [DemogridComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(EmptyBoxLayoutComponent);
+    fixture = TestBed.createComponent(DemogridComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

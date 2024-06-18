@@ -22,9 +22,9 @@
                 <accordion [multiple]="multiple" [bg_color]="'#E85B81'">
                     <div class="header" title="Layout" accordion-item>
                         <ng-template accordionContent>
-                            <span class="icon" *ngFor="let item of layoutItems; let j=index">
-                                <app-icon app-draggable icon="{{item.icon}}"
-                                    (click)="handleIconClick(item.icon)"></app-icon>
+                            <span class="icon" (click)="addLayout(item)" *ngFor="let item of layoutItems; let j=index">
+                                <app-icon icon="{{item.icon}}" ></app-icon>
+                                <p>{{item.label}}</p>
                             </span>
                         </ng-template>
                     </div>
@@ -97,8 +97,7 @@
             </div>
         </div>
         <div class="content">
-            <app-frame-component (messageEvent)="frameTemplate=$event" [selectedIcon]="selectedIcon"
-                [groupButton]="groupButton"></app-frame-component>
+            <app-frame-component (messageEvent)="frameTemplate1=$event"  #Container [selectedIcon]="selectedIcon" [groupButton]="groupButton"></app-frame-component>
         </div>
         <div class="sidebar-right">Sidebar Right</div>
     </div>

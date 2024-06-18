@@ -1,13 +1,10 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, ComponentFactoryResolver, ElementRef, EventEmitter, Inject, Input, Output, SimpleChanges, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, ComponentFactoryResolver, ComponentRef, ElementRef, EventEmitter, Inject, Input, Output, SimpleChanges, ViewChild, ViewContainerRef } from '@angular/core';
 import { ButtonsComponent } from '../buttons/buttons.component';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
-import { EmptyBoxLayoutComponent } from '../../layouts/empty-box-layout/empty-box-layout.component';
-import { TwoColumnLayoutComponent } from '../../layouts/two-column-layout/two-column-layout.component';
-// import { EmptyBoxLayoutComponent } from '../../layouts/empty-box-layout/empty-box-layout.component';
-// import { TwoColumnLayoutComponent } from '../../layouts/two-column-layout/two-column-layout.component';
- 
+import { layoutsComponent } from '../layouts/layouts.component';
+
 export type ResizeAnchorType =
   | 'top'
   | 'left'
@@ -29,6 +26,8 @@ export type ResizeDirectionType =
 })
 export class FrameComponentComponent {
   width!: number;
+  private  layoutComponentRef1?: ComponentRef<layoutsComponent>;
+
   @Output() messageEvent = new EventEmitter<any>();
 
   @ViewChild('wrapper', { static: true, read: ElementRef })
@@ -57,7 +56,7 @@ export class FrameComponentComponent {
  
   minSize: { w: number, h: number } = { w: 200, h: 400 };
   maxSize: { w: number, h: number } = { w: 1000, h: 800 };
-  @ViewChild('layoutContainer', { read: ViewContainerRef }) layoutContainer!: ViewContainerRef;
+  @ViewChild('formContainer', { read: ViewContainerRef, static: true}) formContainer!: ViewContainerRef;
  
   constructor(@Inject(DOCUMENT) private _document: Document,
               private _el: ElementRef,private resolver: ComponentFactoryResolver, private cdr: ChangeDetectorRef) { }
@@ -77,10 +76,11 @@ export class FrameComponentComponent {
                 }
             
                 if (changes['selectedIcon'] && this.selectedIcon) {
-                  this.addLayout(this.selectedIcon);
+                  //this.addLayout(this.selectedIcon);
                 }
               }
             
+
   startDrag($event: any): void {
     $event.preventDefault();
     const mouseX = $event.clientX;
@@ -150,7 +150,7 @@ export class FrameComponentComponent {
     this.size.w = Math.max(Math.min(dw, this.maxSize.w), this.minSize.w);
     this.size.h = Math.max(Math.min(dh, this.maxSize.h), this.minSize.h);
   }
- 
+    //  this.updateLayoutSize();
       this.lastSize = { ...this.size };
     };
  
@@ -163,21 +163,22 @@ export class FrameComponentComponent {
     this._document.addEventListener('mouseup', finishResize);
   } 
 
-  addLayout(icon: string): void {
-    this.layoutContainer.clear(); // Clear existing layout
-
-    switch (icon) {
-      case 'empty-box':
-        const emptyBoxFactory = this.resolver.resolveComponentFactory(EmptyBoxLayoutComponent);
-        this.layoutContainer.createComponent(emptyBoxFactory);
-        break;
-      case 'column2_box':
-        const twoColumnFactory = this.resolver.resolveComponentFactory(TwoColumnLayoutComponent);
-        this.layoutContainer.createComponent(twoColumnFactory);
-        break;
-      // Add more cases for other icons
-      default:
-        return;
+  private updateLayoutSize() {
+    if (this.layoutComponentRef1) {
+      this.layoutComponentRef1.instance.width = this.size.w;
+      this.layoutComponentRef1.instance.height = this.size.h;
+      //this.layoutComponentRef1.instance.updateSize();
     }
   }
+
+  loadLayout(type: any) {
+    if (this.layoutComponentRef1) {
+      this.layoutComponentRef1.destroy();
+    }
+  
+    this.layoutComponentRef1 = this.formContainer.createComponent(layoutsComponent);
+    this.layoutComponentRef1.instance.layoutItem = type;
+     
+  }
+
 }
