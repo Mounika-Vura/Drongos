@@ -19,7 +19,7 @@
                 </div>
             </div>
 
-            <div class="sub-sidebar1" class="scrollable-content" *ngIf="view">
+            <div #scrollableContent class="sub-sidebar1" class="scrollable-content" *ngIf="view">
                 <accordion [multiple]="multiple" [bg_color]="'#E85B81'">
                     <div class="header" title="Layout" accordion-item>
                         <ng-template accordionContent>
@@ -97,8 +97,9 @@
                 </accordion>
             </div>
         </div>
+        
         <div class="content">
-            <app-frame-component (messageEvent)="frameTemplate1=$event"  #Container [selectedIcon]="selectedIcon" [groupButton]="groupButton"></app-frame-component>
+            <app-frame-component (messageEvent)="frameTemplate1=$event" #frameComponent  #Container [selectedIcon]="selectedIcon" [groupButton]="groupButton"></app-frame-component>
         </div>
         <div class="sidebar-right">Sidebar Right</div>
     </div>

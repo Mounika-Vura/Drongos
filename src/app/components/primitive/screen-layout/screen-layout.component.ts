@@ -4,6 +4,7 @@ import { DragDropDirective } from "../drag-drop.directive";
 import { DragmediaDirective } from "../dragmedia.directive";
 import { TypographyComponent } from "../typography/typography.component";
 import { FrameComponentComponent } from "../frame-component/frame-component.component";
+import { interval, Subscription } from "rxjs";
  
 @Component({
   selector: 'app-screen-layout',
@@ -12,7 +13,11 @@ import { FrameComponentComponent } from "../frame-component/frame-component.comp
 })
 export class ScreenLayoutComponent {
 
-  constructor(private resolver: ComponentFactoryResolver, private renderer: Renderer2, private el: ElementRef,private componentFactoryResolver: ComponentFactoryResolver) {}
+  constructor(private resolver: ComponentFactoryResolver,
+             private renderer: Renderer2,
+             private el: ElementRef,
+             private componentFactoryResolver: ComponentFactoryResolver,
+            ) {}
 
   icons: string[] = ['desktop-alt', 'tablet-alt', 'mobile-alt'];
   alignmentIcons: string[] = ['align-left', 'align-center', 'align-right','align-justify',];
@@ -24,10 +29,15 @@ export class ScreenLayoutComponent {
     { viewName: 'expand' },
   ];
   groupButton = [
-    { viewName: 'desktop-alt', width: 1507, height: 857,x:30,y:0 },
+    { viewName: 'desktop-alt', width: 1537, height: 857,x:0,y:0 },
     { viewName: 'tablet-alt', width:650, height: 857,x:450,y:0 },
     { viewName: 'mobile-alt', width: 400, height: 700,x:590,y:0 },
   ];
+  // groupButton = [
+  //   { viewName: 'desktop-alt', width: 1537, height: 857,x:0,y:0 },
+  //   { viewName: 'tablet-alt', width:650, height: 857,x:0,y:0 },
+  //   { viewName: 'mobile-alt', width: 400, height: 700,x:0,y:0 },
+  // ];
   @ViewChild('typoContainer', { read: ViewContainerRef  }) 
   typoContainer!: ViewContainerRef;
   selectedIcon: string=this.icons[0];
@@ -56,7 +66,40 @@ export class ScreenLayoutComponent {
    componentRef.instance.typographytype = label;
  }
 
+ //=================Scroll Adjustment==================//
+  @ViewChild('scrollableContent') scrollableContent!: ElementRef;
+  @ViewChild('frameComponent') scrollFrameComponent!: FrameComponentComponent;
+
+ private checkInterval = 1000; 
+ private intervalSubscription!: Subscription;
+
+ checkHeight() {
+  const element = this.scrollableContent.nativeElement;
+      // if (element.scrollTop > 0) {
+      //   this.scrollFrameComponent.size.w = 1481; 
+      // } 
+
+      // this.renderer.listen(element, 'scroll', () => {
+      //   this.checkScrollbarVisibility();
+      // });
+
+
+      const isScrollable = element.scrollHeight > element.clientHeight;
+      console.log(element.scrollHeight,"    ",element.clientHeight, "     ",isScrollable)
+
+      if (isScrollable && this.scrollFrameComponent) {
+        this.scrollFrameComponent.size.w = 1511; 
+      }
+  }
+
+  startPeriodicCheck() {
+    this.intervalSubscription = interval(this.checkInterval).subscribe(() => {
+      this.checkHeight();
+    });
+  }
+
   //=================Accordian============================//
+  
   showAccordion = false;
 
   toggleAccordion() {
@@ -170,12 +213,17 @@ Container!: ViewContainerRef;
  frameTemplate1:any;
  
  ngAfterViewInit() {
+  
+  this.checkHeight();
+  this.startPeriodicCheck();
+  
    this.draggableIcons.forEach((directive) => {
      directive.frame = this.frameTemplate1.nativeElement;
    });
    this.draggablemedia.forEach((directive) => {
     directive.frame = this.frameTemplate1.nativeElement;
   });
+
  }
 //dragdrop ends
 }
