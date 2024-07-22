@@ -16,7 +16,13 @@ export class ScreenLayoutComponent {
 
   icons: string[] = ['desktop-alt', 'tablet-alt', 'mobile-alt'];
   alignmentIcons: string[] = ['align-left', 'align-center', 'align-right','align-justify',];
-  sideBarIcons:string[]=['plus','arrows-alt','expand'];
+  sideBarIcons1:string[]=['plus','arrows-alt','expand'];
+  view:any = true;
+  sideBarIcons = [
+    { viewName: 'plus' },
+    { viewName: 'arrows-alt' },
+    { viewName: 'expand' },
+  ];
   groupButton = [
     { viewName: 'desktop-alt', width: 1507, height: 857,x:30,y:0 },
     { viewName: 'tablet-alt', width:650, height: 857,x:450,y:0 },
@@ -26,8 +32,22 @@ export class ScreenLayoutComponent {
   typoContainer!: ViewContainerRef;
   selectedIcon: string=this.icons[0];
  
-  onIconSelected(icon: string) {
+  onIconSelected(icon: any) {
     this.selectedIcon = icon;
+    // this.view=false;
+    if( this.selectedIcon =='plus')
+      {
+        this.view=this.view?false:true;
+      }
+      else if(this.selectedIcon =='arrows-alt')
+      {
+        this.view=false;
+      }
+      else if(this.selectedIcon =='expand')
+      {
+        this.view=false;
+      }
+  
     console.log("screen Layout-->",this.selectedIcon)
   }
   onClick(label: string ) {
