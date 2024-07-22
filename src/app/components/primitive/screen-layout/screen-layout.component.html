@@ -11,14 +11,15 @@
 
             <div class="sub-sidebar">
                 <div class="header">
-                    <app-group-button orientation="vertical" (iconSelected)="onIconSelected($event)">
-                        <div class="icon-size" *ngFor="let icon of sideBarIcons" title="{{icon}}"
-                            appGroupButtonDirective></div>
+                    <app-group-button orientation="vertical" (iconSelected)="onIconSelected($event)" (view)="onIconSelected($event)">
+                        <div class="icon-size" *ngFor="let icon of sideBarIcons" title="{{icon.viewName}}"
+                            appGroupButtonDirective>
+                        </div>
                     </app-group-button>
                 </div>
             </div>
 
-            <div class="sub-sidebar1" class="scrollable-content">
+            <div class="sub-sidebar1" class="scrollable-content" *ngIf="view">
                 <accordion [multiple]="multiple" [bg_color]="'#E85B81'">
                     <div class="header" title="Layout" accordion-item>
                         <ng-template accordionContent>
