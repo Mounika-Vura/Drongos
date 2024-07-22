@@ -18,9 +18,9 @@ export class ScreenLayoutComponent {
   alignmentIcons: string[] = ['align-left', 'align-center', 'align-right','align-justify',];
   sideBarIcons:string[]=['plus','arrows-alt','expand'];
   groupButton = [
-    { viewName: 'desktop-alt', width: 715, height: 700,x:30,y:30 },
-    { viewName: 'tablet-alt', width:300, height: 1024,x:310,y:30 },
-    { viewName: 'mobile-alt', width: 150, height: 900,x:380,y:30 },
+    { viewName: 'desktop-alt', width: 1507, height: 857,x:30,y:0 },
+    { viewName: 'tablet-alt', width:650, height: 857,x:450,y:0 },
+    { viewName: 'mobile-alt', width: 400, height: 700,x:590,y:0 },
   ];
   @ViewChild('typoContainer', { read: ViewContainerRef  }) 
   typoContainer!: ViewContainerRef;
@@ -37,6 +37,13 @@ export class ScreenLayoutComponent {
  }
 
   //=================Accordian============================//
+  showAccordion = false;
+
+  toggleAccordion() {
+    this.showAccordion = !this.showAccordion;
+  }
+
+
   w="260px";
   h="60px";
    multiple = true;
