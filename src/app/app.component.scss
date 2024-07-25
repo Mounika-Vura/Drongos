@@ -1,49 +1,25 @@
-$pink: #E85B81;
-$font-stack: Roboto;
-
-h1
-{
-  font: 100% $font-stack;
-  background-color: $pink;
+/* app.component.css */
+pre {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+  padding: 15px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+textarea {
+  width: 100%;
+  height: 200px;
+  margin-bottom: 10px;
 }
 
 button {
-  padding: 0.2rem 1rem;
-  background: var(--primary);
-  border-radius: 8px;
-  color: #fff;
+  margin-bottom: 20px;
 }
 
-.text {
-  padding: 10px; 
-  display: inline-block;
-}
 
-.icon {
-  display: inline-block;
-  width: 50%;
-  box-sizing: border-box;
-  padding: 10px 40px;
-}
-
-.iconClass {
-  font-size: 50px;
-}
-
-.btn {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: black;
-  font-size: 18px;
-}
-
-.btn1 {
-  display: inline-flex;
-  align-items: center;
-  gap: 19px;
-  padding: 3px;
-  float: left;
-  color: black;
-  font-size: 18px;
+code {
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 14px;
+  color: #212529;
 }

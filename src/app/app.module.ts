@@ -23,7 +23,8 @@ import { DragmediaDirective } from './components/primitive/dragmedia.directive';
 import { DragDropDirective } from './components/primitive/drag-drop.directive';
 import { TypographyComponent } from './components/primitive/typography/typography.component';
 import { layoutsComponent } from './components/primitive/layouts/layouts.component';
-import { GeminiComponent } from './components/primitive/gemini/gemini.component';
+import { GoogleAiService } from './google-ai.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -45,8 +46,7 @@ import { GeminiComponent } from './components/primitive/gemini/gemini.component'
     DragmediaDirective,
     DragDropDirective,
     TypographyComponent,
-    layoutsComponent,
-    GeminiComponent
+    layoutsComponent
   ],
   imports: [
     BrowserModule,
@@ -54,9 +54,10 @@ import { GeminiComponent } from './components/primitive/gemini/gemini.component'
     FontAwesomeModule,
     FormsModule,
     FontAwesomeModule,
-    CommonModule
+    CommonModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [GoogleAiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
