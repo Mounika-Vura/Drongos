@@ -13,8 +13,13 @@ export class AppComponent {
   tsCode: string = '';
   isLoading: boolean = false;
   error: string | null = null;
+  activeTab: string = 'html';
 
   constructor(private googleAiService: GoogleAiService) {}
+
+  setActiveTab(tab: string) {
+    this.activeTab = tab;
+  }
 
   generateLayout() {
     this.isLoading = true;
