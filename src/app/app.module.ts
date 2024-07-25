@@ -23,6 +23,7 @@ import { DragmediaDirective } from './components/primitive/dragmedia.directive';
 import { DragDropDirective } from './components/primitive/drag-drop.directive';
 import { TypographyComponent } from './components/primitive/typography/typography.component';
 import { layoutsComponent } from './components/primitive/layouts/layouts.component';
+import { GeminiComponent } from './components/primitive/gemini/gemini.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { layoutsComponent } from './components/primitive/layouts/layouts.compone
     DragmediaDirective,
     DragDropDirective,
     TypographyComponent,
-    layoutsComponent
+    layoutsComponent,
+    GeminiComponent
   ],
   imports: [
     BrowserModule,
