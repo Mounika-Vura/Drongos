@@ -1,13 +1,12 @@
-
 import { Component } from '@angular/core';
-import { GoogleAiService } from './google-ai.service';
+import { GoogleAiService } from '../../../google-ai.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  selector: 'app-loginform',
+  templateUrl: './loginform.component.html',
+  styleUrl: './loginform.component.scss'
 })
-export class AppComponent {
+export class LoginformComponent {
   jsonInput: string = '';
   htmlCode: string = '';
   cssCode: string = '';
@@ -30,7 +29,7 @@ export class AppComponent {
     this.cssCode = '';
     this.tsCode = '';
 
-    this.googleAiService.generateLayoutCode(this.jsonInput).subscribe(
+    this.googleAiService.generateLoginCode(this.jsonInput).subscribe(
       response => {
         this.isLoading = false;
         if (response && response.candidates && response.candidates[0] && response.candidates[0].content && response.candidates[0].content.parts && response.candidates[0].content.parts[0]) {
@@ -54,6 +53,17 @@ export class AppComponent {
     );
   }
 
+  // copyToClipboard(content: string) {
+  //   if (navigator.clipboard) {
+  //     navigator.clipboard.writeText(content).then(() => {
+  //       alert('Content copied to clipboard!');
+  //     }).catch(err => {
+  //       alert('Failed to copy content: ' + err);
+  //     });
+  //   } else {
+  //     alert('Clipboard API is not supported on your browser.');
+  //   }
+  // }
   copyToClipboard(content: string) {
     if (navigator.clipboard) {
       navigator.clipboard.writeText(content).then(() => {
